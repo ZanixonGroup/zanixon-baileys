@@ -5,7 +5,7 @@ module.exports = [{
   code: async(zxn, m, { axios, remote, zn, alert, text, sendError, formatSize, isUrl }, { igdl }) => {
     try {
       // check input and url
-      if(!text) return zxn.reply(remote, `Mana url post instagram nya?\n*Contoh:* .ig https://instagram.com/p/C2opvtpBwyC`);
+      if(!text) return zxn.reply(remote, `${zn.emoji("failed")}︱Mana url post instagram nya?\n*Contoh:* .ig https://instagram.com/p/C2opvtpBwyC`);
       if(!isUrl(text)) return zxn.reply(remote, `Link instagram tidak valid!`);
       
       // wait msg 
