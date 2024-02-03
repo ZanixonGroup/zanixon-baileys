@@ -1,6 +1,6 @@
 {
   "name": "zanixon-baileys",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A simple baileys whatsapp bot that uses handlers to easily manage commands and make commands look clean",
   "main": "index.js",
   "scripts": {
