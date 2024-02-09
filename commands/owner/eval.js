@@ -79,13 +79,13 @@ module.exports = [{
         try {
             if (/await/.test(m.text)) {
                 evaled = await eval(`(async () => { ${text} })`)
-                return zxn.reply(remote, evaled)
+                return zxn.reply(m, evaled)
             }
             evaled = await eval(text)
             if (typeof evaled !== "string") evaled = require("util").inspect(evaled)
-            await zxn.reply(remote, evaled)
+            await zxn.reply(m, evaled)
         } catch (e) {
-            zxn.reply(remote, util.format(e))
+            zxn.reply(m, util.format(e))
         }
     },
     isOwner: true,

@@ -12,7 +12,7 @@ module.exports = [{
     		let cmdName = args[0].toLowerCase();
     		let cmd = commands.get(name) || Array.from(commands.values()).find((v) => v.aliases.includes(name));
     		if(!cmd) {
-    			return zxn.reply(remote, zn.emoji("alert") + "Command tidak ditemukan!");
+    			return zxn.reply(m, zn.emoji("alert") + "Command tidak ditemukan!");
     		} else {
     			let info = `*Command Info:*
 ➭ Name: *${cmd.name}*
@@ -25,7 +25,7 @@ module.exports = [{
 ➭ Description: *${cmd.details.desc}*
 
 ➭ Usage: *${cmd.details.usage.replace(/%prefix/gi, prefix).replace(/%command/gi, cmd.name).replace(/%text/gi, text)}*`; 
-					return zxn.reply(remote, info);
+					return zxn.reply(m, info);
     		}
     	} else {
     		let listCmd = "";
@@ -48,9 +48,6 @@ module.exports = [{
     		}
 	    	let menu = `*#SAVEPALESTINE🇵🇸 - #PRAYFORPALESTINE🇵🇸*
 Halo *@${sender.split("@")[0]}*!
-	
-Sponsor bot: *J*
-Grup sponsor: https://s.id/1Ugz8
 	
     ╭╼━「 *ZanixonMD* 」
     ┃ ❧ Owner: *ZTRdiamond*
@@ -77,7 +74,7 @@ Powered by Zanixon Group™
 \`\`\``; 
 				let year = moment().tz('Asia/Jakarta').format('YYYY');
 
-	    	zxn.reply(remote, menu, { quoted: m }, { renderLargerThumbnail: true, sourceUrl: "https://chat.whatsapp.com/C7WMDga4RIF21hj2BSzg1c" });
+	    	zxn.reply(m, menu, { quoted: m }, { renderLargerThumbnail: true, sourceUrl: "https://chat.whatsapp.com/C7WMDga4RIF21hj2BSzg1c" });
     	}
    }
 }]

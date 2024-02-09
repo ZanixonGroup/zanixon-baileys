@@ -3,11 +3,11 @@ module.exports = [{
 	aliases: ["yts", "ys", "youtubesearch"],
 	type: "searcher",
 	code: async(zxn, m, { remote, sender, alert, text, zn, sendError }, { yts }) => {
-		if(text == "") return zxn.reply(remote, alert.noquery + "\n*Contoh:* .yts mantra hujan kobo");
+		if(text == "") return zxn.reply(m, alert.noquery + "\n*Contoh:* .yts mantra hujan kobo");
 		try {
 			const res = await yts(text);
 			const data = res.data;
-			if(!res.status) return zxn.reply(remote, alert.notfound);
+			if(!res.status) return zxn.reply(m, alert.notfound);
 			let list = "";
 			let c = 1;
 			let info = data[0];
@@ -20,7 +20,7 @@ module.exports = [{
     ➭ Views: *${zn.abbreviate(v.views, "0.00a")}*
     ➭ Video: *${v.url}*\n\n`;
 			});
-			let msg = await zxn.reply(remote, `*Ditemukan ${data.length} hasil dari pencarian:*\n\n${list}`, {
+			let msg = await zxn.reply(m, `*Ditemukan ${data.length} hasil dari pencarian:*\n\n${list}`, {
 				contextInfo: {
 					externalAdReply: {
 						title: `Search: ${text}`,
@@ -35,7 +35,7 @@ module.exports = [{
 			});
 		} catch (e) {
 			sendError(e)
-			return zxn.reply(remote, alert.error)
+			return zxn.reply(m, alert.error)
 		}
 	}
 }]

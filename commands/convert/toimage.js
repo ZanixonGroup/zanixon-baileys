@@ -7,7 +7,7 @@ module.exports = [{
 			const { webp2mp4File, webp2pngFile } = require("../../libs/sticker.js");
 			let type = quoted.type;
 			let media = null;
-			zxn.reply(remote, zn.emoji("wait") + `︱Tunggu sebentar, permintaan sedang diproses!`)
+			zxn.reply(m, zn.emoji("wait") + `︱Tunggu sebentar, permintaan sedang diproses!`)
 			if(quoted.msg.isAnimated == false) {
 				let raw = await zxn.downloadMediaMessage(quoted);
 				media = await webp2pngFile(raw);
@@ -18,7 +18,7 @@ module.exports = [{
 				zxn.sendMedia(remote, media, m, { mimetype: "video/mp4", fileName: "sticker-to-video.mp4", caption: "Sticker to video!" });
 			}
 		} catch(e) {
-			zxn.reply(remote, zn.emoji("failed") + `︱Gagal mengkonversi sticker!`);
+			zxn.reply(m, zn.emoji("failed") + `︱Gagal mengkonversi sticker!`);
 			console.log("Error at toimage.js:", e);
 		}
 	}

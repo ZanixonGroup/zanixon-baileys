@@ -3,6 +3,7 @@ const zn = require('zanixon.db');
 const colors = require("colors");
 const moment = require("moment-timezone");
 const path = require("path");
+require('dotenv').config();
 
 //custom colors for beautiful console.log()
 colors.setTheme({
@@ -95,6 +96,10 @@ global.api = {
 	botcahx: {
 		base: "https://api.botcahx.live/api/",
 		key: process.env.BOTCAHX
+	},
+	znapi: {
+	  base: "https://api.zanixon.xyz/api/",
+	  key: process.env.ZNAPI
 	}
 }
 

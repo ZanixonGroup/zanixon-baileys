@@ -5,10 +5,10 @@ module.exports = [{
 	aliases: ["s","stiker","setiker","wm","swm","sstickerwm","stikerwm"],
 	type: "convert",
 	code: async(zxn, m, { remote, alert, zn, from, quoted, msg, text, sendError }) => {
-		zxn.reply(remote, alert.wait);
+		zxn.reply(m, alert.wait);
 		try {
 			if(/image|video|webp/i.test(quoted.msg.mimetype)) { 
-				if(quoted.msg.seconds > 9) return zxn.reply(remote, `Max video 9 detik!`)
+				if(quoted.msg.seconds > 9) return zxn.reply(m, `Max video 9 detik!`)
 				const media = await zxn.downloadMediaMessage(quoted);
 				const split = text.split("|");
 				let exif = {
@@ -22,11 +22,11 @@ module.exports = [{
 	  		let sticker = await writeExif({ mimetype: quoted.msg.mimetype, data: media }, exif) 
 				zxn.sendMessage(remote, { sticker }, { quoted: m })
 			} else {
-				zxn.reply(remote, `Tipe media tidak didukung!`);
+				zxn.reply(m, `${zn.emoji("failed")}︱Tipe media tidak didukung!`);
 			}
 		} catch(e) {
 			sendError(e);
-			zxn.reply(remote, alert.error)
+			zxn.reply(m, alert.error)
 		}
 	}
 }]

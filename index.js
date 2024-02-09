@@ -152,5 +152,5 @@ try {
 }
 module.exports = {
 	Commands,
-	Plugins
+	plugins
 }

@@ -7,10 +7,10 @@ module.exports = [{
     desc: "Running Code terminal via Command",
     type: "owner",
     code: async(zxn, m, { remote, text }) => {
-        if (!text) return zxn.reply(remote, `No query code`)
+        if (!text) return zxn.reply(m, `No query code`)
         execS(text, async (err, stdout) => {
-            if (err) return zxn.reply(remote, err)
-            if (stdout) return zxn.reply(remote, stdout)
+            if (err) return zxn.reply(m, err)
+            if (stdout) return zxn.reply(m, stdout)
         })
     },
     isOwner: true,

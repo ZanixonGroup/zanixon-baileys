@@ -4,21 +4,21 @@ module.exports = [{
   type: "downloader",
   code: async(zxn, m, { global, remote, zn, text, alert, sendError, isUrl, formatSize, fs }, { ttdl, readmore }) => {
     try {
-      if(!text) return zxn.reply(remote, `${zn.emoji("failed")}︱Mana url tiktok nya?\n*Contoh:* .tiktok https://www.tiktok.com/@mythiavtuber/video/7317201792411028741`);
-      if(!isUrl(text)) return zxn.reply(remote, `${zn.emoji("alert")}︱Link tiktok tidak valid!`);
+      if(!text) return zxn.reply(m, `${zn.emoji("failed")}︱Mana url tiktok nya?\n*Contoh:* .tiktok https://www.tiktok.com/@mythiavtuber/video/7317201792411028741`);
+      if(!isUrl(text)) return zxn.reply(m, `${zn.emoji("alert")}︱Link tiktok tidak valid!`);
       
       // wait message
-      zxn.reply(remote, alert.wait);
+      zxn.reply(m, alert.wait);
       
       // download tiktok
       const result = await ttdl(text);
-      if(!result.status) return zxn.reply(remote, `${zn.emoji("failed")}︱Gagal mendownload konten!`);
+      if(!result.status) return zxn.reply(m, `${zn.emoji("failed")}︱Gagal mendownload konten!`);
       const data = result.data;
       if(data.type == "video") {
         const media = data.media[0];
         
         // check content size 
-        if(media.size >= 100000000) return zxn.reply(remote, alert.oversize);
+        if(media.size >= 100000000) return zxn.reply(m, alert.oversize);
         
         let caption = `*Tiktok Downloader:*
   ➭ Size: *${formatSize(media.size)}*
@@ -54,12 +54,12 @@ ${data.description}`;
         }
         download().catch((e) => {
           sendError(e);
-          return zxn.reply(remote, alert.error);
+          return zxn.reply(m, alert.error);
         });
       }
     } catch (e) {
       sendError(e);
-      return zxn.reply(remote, alert.error)
+      return zxn.reply(m, alert.error)
     }
   }
 },{
@@ -68,11 +68,11 @@ ${data.description}`;
   type: "downloader",
   code: async(zxn, m, { global, remote, zn, text, alert, sendError, isUrl, formatSize, fs }, { ttdl, readmore }) => {
     try {
-      if(!text) return zxn.reply(remote, `${zn.emoji("failed")}︱Mana url tiktok nya?\n*Contoh:* .tiktok https://www.tiktok.com/@mythiavtuber/video/7317201792411028741`);
-      if(!isUrl(text)) return zxn.reply(remote, `${zn.emoji("alert")}︱Link tiktok tidak valid!`);
+      if(!text) return zxn.reply(m, `${zn.emoji("failed")}︱Mana url tiktok nya?\n*Contoh:* .tiktok https://www.tiktok.com/@mythiavtuber/video/7317201792411028741`);
+      if(!isUrl(text)) return zxn.reply(m, `${zn.emoji("alert")}︱Link tiktok tidak valid!`);
       
       // wait message
-      zxn.reply(remote, alert.wait);
+      zxn.reply(m, alert.wait);
       
       // download tiktok
       const result = await ttdl(text);
@@ -83,11 +83,11 @@ ${data.description}`;
 ➭ Author: *${data.author.url}*
 ${readmore()}
 ${data.description}`;
-      zxn.reply(remote, caption, { quoted: m }, { thumbnailUrl: data.cover[0], renderLargerThumbnail: true })
+      zxn.reply(m, caption, { quoted: m }, { thumbnailUrl: data.cover[0], renderLargerThumbnail: true })
       zxn.sendMedia(remote, media, m, { mimetype: "audio/mp4", fileName: "tiktokdl-zanixonmd.mp3" });
     } catch (e) {
       sendError(e);
-      return zxn.reply(remote, alert.error)
+      return zxn.reply(m, alert.error)
     }
   }
 }]

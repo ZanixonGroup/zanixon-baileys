@@ -8,7 +8,7 @@ module.exports = [{
       zxn.sendMedia(remote, data.url, m, { caption, mimetype: "image/png" });
     } catch (e) {
       sendError(e);
-      return zxn.reply(remote, alert.error);
+      return zxn.reply(m, alert.error);
     }
   }
 }]

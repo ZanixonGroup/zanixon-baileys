@@ -5,15 +5,15 @@ module.exports = [{
   code: async(zxn, m, { axios, remote, zn, alert, text, sendError, formatSize, isUrl }, { igdl }) => {
     try {
       // check input and url
-      if(!text) return zxn.reply(remote, `${zn.emoji("failed")}︱Mana url post instagram nya?\n*Contoh:* .ig https://instagram.com/p/C2opvtpBwyC`);
-      if(!isUrl(text)) return zxn.reply(remote, `Link instagram tidak valid!`);
+      if(!text) return zxn.reply(m, `${zn.emoji("failed")}︱Mana url post instagram nya?\n*Contoh:* .ig https://instagram.com/p/C2opvtpBwyC`);
+      if(!isUrl(text)) return zxn.reply(m, `Link instagram tidak valid!`);
       
       // wait msg 
-      zxn.reply(remote, alert.wait);
+      zxn.reply(m, alert.wait);
       
       // download content 
       const result = await igdl(text);
-      if(!result.status) return zxn.reply(remote, `${zn.emoji("failed")}︱Gagal mendownload konten!`);
+      if(!result.status) return zxn.reply(m, `${zn.emoji("failed")}︱Gagal mendownload konten!`);
       const data = result.data;
       let delayDuration = 5000;
       let mediaCount = data.length;
@@ -38,11 +38,11 @@ module.exports = [{
       }
       download().catch((e) => {
         sendError(e);
-        zxn.reply(remote, alert.error);
+        zxn.reply(m, alert.error);
       })
     } catch (e) {
       sendError(e);
-      zxn.reply(remote, alert.error);
+      zxn.reply(m, alert.error);
     }
   }
 }]

@@ -8,7 +8,6 @@ const { fileTypeFromBuffer } = import("file-type");
 const path = require("path");
 const fs = require("fs");
 const pino = require("pino");
-let metadataMessage;
 
 function getContentType(content) {
    if (content) {
@@ -21,8 +20,8 @@ function getContentType(content) {
 async function Client({ zxn, store }) {
    const client = Object.defineProperties(zxn, {
       reply: {
-			  async value(jid, text, options = {}, thumb = {}) {
-			    let m = metadataMessage;
+			  async value(m, text, options = null, thumb = {}) {
+			    options = options ? options : {};
 			    if(!thumb?.thumbnailUrl) {
 			      thumb.thumbnail = thumb?.thumbnail || fs.readFileSync(path.join(__dirname, "../", global.thumbnail.thumbnail));
 			    }
@@ -30,7 +29,7 @@ async function Client({ zxn, store }) {
 			    options?.video ? options.mimetype = "video/mp4" : null;
 			    options?.audio ? options.mimetype = "audio/mp4" : null;
 			    options?.mimetype ? options.caption = text : options.text = text;
-				  let send = await zxn.sendMessage(jid, { contextInfo: {
+				  let send = await zxn.sendMessage(m.from, { contextInfo: {
 					  mentionedJid: zxn.parseMention(text),
               externalAdReply: {
                 title: thumb?.title || global.thumbnail.title,
