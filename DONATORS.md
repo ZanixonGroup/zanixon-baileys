@@ -1,7 +1,7 @@
 # Donators List
 Your support really helps us in the bot development process!
 
-- **Bang Jeri** - Rp 1.370.000
+- **Bang Jeri** - Rp 1.470.000
 - **Syafriel** - Rp 10.000
 - **Markedsleep** - Rp 10.000
 - **Ael** - Rp 5.000
